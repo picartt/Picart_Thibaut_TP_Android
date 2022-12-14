@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.picart_thibaut_tpandroid.R
 import com.android.picart_thibaut_tpandroid.databinding.ActivityRecyclerViewBinding
 import com.android.picart_thibaut_tpandroid.view.model.Product
+import com.android.picart_thibaut_tpandroid.view.model.ProductForRecyclerView
+import com.android.picart_thibaut_tpandroid.view.model.ProductHeader
 
 class RecyclerViewActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRecyclerViewBinding
@@ -31,8 +33,10 @@ class RecyclerViewActivity : AppCompatActivity() {
         adapter.submitList(generateFakeData())
     }
 
-    private fun generateFakeData(): ArrayList<Product> {
-        return arrayListOf(
+    private fun generateFakeData(): MutableList<ProductForRecyclerView> {
+        val result = mutableListOf<ProductForRecyclerView>()
+        // Create data raw
+        mutableListOf(
             Product("Tomate", 5, false),
             Product("Courgette", 6, false),
             Product("Oignon", 7, false),
@@ -41,7 +45,18 @@ class RecyclerViewActivity : AppCompatActivity() {
             Product("Pomme de terre", 10, true),
             Product("Chou", 11, false),
             Product("Endive", 12, true)
-        )
+        ).groupBy {
+            // Split in 2 list, modulo and not
+            it.isFavorite
+        }.forEach { (isFavorite, items) ->
+            // For each mean for each list split
+            // Here we have a map (key = isModulo) and each key have a list of it's items
+            result.add(ProductHeader("Is Favorite : $isFavorite"))
+            result.addAll(items)
+            // Here we can add footer, just after our items
+        }
+        return result
     }
+
 
 }

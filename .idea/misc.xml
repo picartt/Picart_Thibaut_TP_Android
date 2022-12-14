@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Cours/MASTER/AndroidV2/app/src/main/res/drawable/custom_background.xml" value="0.1" />
+        <entry key="..\:/Cours/MASTER/AndroidV2/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
         <entry key="..\:/Cours/MASTER/AndroidV2/app/src/main/res/layout/activity_main.xml" value="0.22146739130434784" />
         <entry key="..\:/Cours/MASTER/AndroidV2/app/src/main/res/layout/activity_recycler_view.xml" value="0.22146739130434784" />
         <entry key="..\:/Cours/MASTER/AndroidV2/app/src/main/res/layout/item_product_recycler.xml" value="0.22146739130434784" />
