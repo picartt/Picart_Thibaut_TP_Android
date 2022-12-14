@@ -13,9 +13,11 @@
         android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/itemRecyclerViewName"
+        app:layout_constraintRight_toLeftOf="@id/itemRecyclerViewRemaining"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="@tools:sample/cities" />
+        tools:text="@tools:sample/cities"
+        android:textColor="@color/black"
+        />
 
     <TextView
         android:id="@+id/itemRecyclerViewRemaining"
@@ -23,9 +25,11 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/itemRecyclerViewRemaining"
+        app:layout_constraintLeft_toRightOf="@id/itemRecyclerViewName"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="@tools:sample/full_names" />
+        tools:text="@tools:sample/full_names"
+        android:textColor="@color/black"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
