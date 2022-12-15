@@ -12,7 +12,7 @@ class CustomApplication: Application() {
         Room.databaseBuilder(
             applicationContext,
             CustomRoomDatabase::class.java,
-            "Pokemon2"
+            "Pokemon3"
         ).fallbackToDestructiveMigration().build()
     }
 

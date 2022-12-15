@@ -8,7 +8,8 @@ fun ProductRetrofit.toRoom(): ProductRoom {
     return ProductRoom(
         title = title,
         iconUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png",
-        _id = id.toInt()
+        _id = id.toInt(),
+        type = type
     )
 }
 
@@ -17,7 +18,8 @@ fun List<ProductRoom>.fromRoomToDomain(): List<ProductDomain> {
         ProductDomain(
             title = it.title,
             imageUrl = it.iconUrl,
-            id = it._id
+            id = it._id,
+            type = it.type
         )
     }
 }

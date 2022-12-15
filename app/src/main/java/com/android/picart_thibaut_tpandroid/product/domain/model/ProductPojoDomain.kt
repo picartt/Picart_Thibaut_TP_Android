@@ -4,5 +4,6 @@ package com.android.picart_thibaut_tpandroid.product.domain.model
 data class ProductDomain(
     val title : String,
     val imageUrl : String,
-    val id: Int
+    val id: Int,
+    val type: String
 )

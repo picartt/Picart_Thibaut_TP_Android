@@ -11,17 +11,18 @@ fun List<ProductDomain>.fromDomainToUi(): List<ProductForRecyclerView> {
 
     groupBy {
         // Split in 2 list, modulo and not
-        it.id % 2 == 0
-    }.forEach { (isModulo, items) ->
+        it.type
+    }.forEach { (type, items) ->
         // For each mean for each list split
         // Here we have a map (key = isModulo) and each key have a list of it's items
-        result.add(ProductHeader("Is Favorite : $isModulo"))
+        result.add(ProductHeader("Type : $type"))
 
         result.addAll(items.map {
             ProductUi(
                 title = it.title,
                 url = it.imageUrl,
-                id = it.id
+                id = it.id,
+                type = it.type
             )
         })
         result.add(ProductFooter("Nombre de Pokémon:${items.size}"))

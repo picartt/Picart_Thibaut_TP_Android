@@ -6,7 +6,8 @@ sealed class ProductForRecyclerView()
 data class ProductUi(
     val title: String,
     val url: String,
-    val id: Int
+    val id: Int,
+    val type: String
 ): ProductForRecyclerView()
 
 /** Object use for Ui */
