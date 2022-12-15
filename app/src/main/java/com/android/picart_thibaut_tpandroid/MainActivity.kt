@@ -4,7 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.android.picart_thibaut_tpandroid.databinding.ActivityMainBinding
-import com.android.picart_thibaut_tpandroid.view.RecyclerViewActivity
+import com.android.picart_thibaut_tpandroid.product.view.activity.RecyclerViewActivity
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding

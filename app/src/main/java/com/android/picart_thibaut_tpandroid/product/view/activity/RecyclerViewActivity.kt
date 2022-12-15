@@ -1,4 +1,4 @@
-package com.android.picart_thibaut_tpandroid.view
+package com.android.picart_thibaut_tpandroid.product.view.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,12 +9,11 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.android.picart_thibaut_tpandroid.R
 import com.android.picart_thibaut_tpandroid.databinding.ActivityRecyclerViewBinding
-import com.android.picart_thibaut_tpandroid.view.model.Product
-import com.android.picart_thibaut_tpandroid.view.model.ProductForRecyclerView
-import com.android.picart_thibaut_tpandroid.view.model.ProductHeader
-import com.android.picart_thibaut_tpandroid.viewmodel.ProductViewModel
+import com.android.picart_thibaut_tpandroid.product.view.ProductViewAdapter
+import com.android.picart_thibaut_tpandroid.product.view.model.ProductForRecyclerView
+import com.android.picart_thibaut_tpandroid.product.view.model.ProductUi
+import com.android.picart_thibaut_tpandroid.product.view.viewmodel.ProductViewModel
 import kotlin.random.Random
 
 class RecyclerViewActivity : AppCompatActivity() {
@@ -29,8 +28,12 @@ class RecyclerViewActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRecyclerViewBinding.inflate(layoutInflater)
-        binding.addItemButton.setOnClickListener { addRandomAndroidVersion() }
-        binding.deleteAllItemButton.setOnClickListener { deleteAndroidVersion() }
+        binding.addItemButton.setOnClickListener {
+            viewModel.fetchNewProduct()
+        }
+        binding.deleteAllItemButton.setOnClickListener {
+            viewModel.deleteAll()
+        }
         setContentView(binding.root)
 
         viewModel = ViewModelProvider(this)[ProductViewModel::class.java]
@@ -47,42 +50,21 @@ class RecyclerViewActivity : AppCompatActivity() {
         binding.recyclerView.adapter = adapter
     }
 
-    private fun onItemClick(product: Product, view : View) {
+    private fun onItemClick(product: ProductUi, view : View) {
         view.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-        Toast.makeText(this, product.name, Toast.LENGTH_LONG).show()
+        Toast.makeText(this, product.title, Toast.LENGTH_LONG).show()
     }
 
 
     override fun onStart() {
         super.onStart()
-        viewModel.productList.observe(this, productListObserver)
+        viewModel.productLiveData.observe(this, productListObserver)
     }
 
 
     override fun onStop() {
         super.onStop()
-        viewModel.productList.removeObserver(productListObserver)
-    }
-
-    private fun addRandomAndroidVersion() {
-        val isFavIcon = "https://icons.iconarchive.com/icons/paomedia/small-n-flat/512/heart-icon.png"
-        val noFavIcon = "https://www.iconpacks.net/icons/2/free-heart-icon-3510-thumb.png"
-        val random = Random.nextInt(0, 1000)
-        var isFavorite = false
-        var url = ""
-        if (random%4==0){
-            isFavorite = true
-            url = isFavIcon
-        } else {
-            isFavorite = false
-            url = noFavIcon
-        }
-        viewModel.insertProduct("Product $random", random, isFavorite, url)
-    }
-
-
-    private fun deleteAndroidVersion() {
-        viewModel.deleteAllProduct()
+        viewModel.productLiveData.removeObserver(productListObserver)
     }
 
 

@@ -2,12 +2,12 @@ package com.android.picart_thibaut_tpandroid.architecture
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.android.picart_thibaut_tpandroid.dao.ProductDao
-import com.android.picart_thibaut_tpandroid.view.model.LocalProduct
+import com.android.picart_thibaut_tpandroid.product.data.local.ProductDao
+import com.android.picart_thibaut_tpandroid.product.data.model.ProductRoom
 
 @Database(
     entities = [
-        LocalProduct::class
+        ProductRoom::class
     ],
     version = 1,
     exportSchema = false
